@@ -510,11 +510,16 @@
         // ==========================================
         // 初始化 Firebase
         // ==========================================
-        let firebaseConfig = { apiKey: "dummy", projectId: "dummy", appId: "dummy" };
-        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-            try { firebaseConfig = JSON.parse(__firebase_config); } catch(e){}
-        }
-        appId = typeof __app_id !== 'undefined' ? __app_id : 'default-photo-booth';
+       const firebaseConfig = {
+  apiKey: "AIzaSyC4xX1pgQECCv_0BPJ7c3evNJHDLPvZkmE",
+  authDomain: "photobooth-92401.firebaseapp.com",
+  projectId: "photobooth-92401",
+  storageBucket: "photobooth-92401.firebasestorage.app",
+  messagingSenderId: "948611804541",
+  appId: "1:948611804541:web:7503665164cc4ac6907014"
+};
+        // 給您的拍貼機取一個專屬的 ID
+        appId = 'my-custom-photo-booth';
 
         try {
             const app = initializeApp(firebaseConfig);
@@ -525,7 +530,7 @@
         }
 
         // ⭐ 請填入您用來處理 Google Drive 照片上傳/刪除的 GAS 網址
-        const GOOGLE_SCRIPT_URL = "請填入您的_Google_Apps_Script_網址";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxp0gkhMx2F_YeFzPG14d5HjZOT9gHnYhYZMNarRxXll1KraGFGwiGMVfAjx3bxngzn/exec";
 
         // ==========================================
         // 預設邊框
@@ -548,7 +553,7 @@
                 <text x="400" y="760" font-family="monospace" font-size="30" fill="white" text-anchor="middle" font-weight="bold" background="black">/// FILM STRIP ///</text>
             </svg>
         `);
-        const defaultFrame3 = "https://raw.githubusercontent.com/您的帳號/專案名稱/main/可愛海兔去背版.png";
+        const defaultFrame3 = "https://github.com/wenchun0910-svg/2026tcedubuffet/blob/main/bk01.png";
 
         const DEFAULT_FRAMES = [
             { id: 'def1', url: defaultFrame1, name: 'Love Moment', isDefault: true },

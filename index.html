@@ -558,7 +558,7 @@
         const DEFAULT_FRAMES = [
             { id: 'def1', url: defaultFrame1, name: 'Love Moment', isDefault: true },
             { id: 'def2', url: defaultFrame2, name: 'Film Strip', isDefault: true },
-            { id: 'def3', url: defaultFrame3, name: '可愛海兔', isDefault: true }
+            { id: 'def3', url: defaultFrame3, name: '2026EduBuffet', isDefault: true }
         ];
 
         // ==========================================
@@ -700,7 +700,7 @@
             try {
                 await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config'), {
                     siteTitle: newTitle || "智能拍貼機",
-                    logoUrl: newLogo || "Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png",
+                    logoUrl: newLogo || "tc.png",
                     bgUrl: newBg || ""
                 }, { merge: true });
                 btn.innerText = "✅ 已儲存";

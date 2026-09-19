@@ -536,21 +536,12 @@
         // 預設邊框
         // ==========================================
         const btoaUTF8 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
-        const defaultFrame1 = `data:image/svg+xml;base64,` + btoaUTF8(`
-            <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="20" width="760" height="760" fill="none" stroke="#ffffff" stroke-width="30" rx="15" />
-                <path d="M0,0 L150,0 L0,150 Z" fill="#ff69b4" opacity="0.8"/>
-                <path d="M800,0 L650,0 L800,150 Z" fill="#ffb6c1" opacity="0.8"/>
-                <path d="M0,800 L150,800 L0,650 Z" fill="#ffb6c1" opacity="0.8"/>
-                <path d="M800,800 L650,800 L800,650 Z" fill="#ff69b4" opacity="0.8"/>
-                <text x="400" y="750" font-family="sans-serif" font-size="40" fill="white" text-anchor="middle" font-weight="900" letter-spacing="5" style="text-shadow: 2px 2px 0px #ff69b4;">LOVE MOMENT</text>
-            </svg>
-        `);
+        const defaultFrame1 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/chanes.png";
       const defaultFrame2 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/chanes.png";
         const defaultFrame3 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/bk.png";
 
         const DEFAULT_FRAMES = [
-            { id: 'def1', url: defaultFrame1, name: 'Love Moment', isDefault: true },
+            { id: 'def1', url: defaultFrame1, name: 'chanes20', isDefault: true },
             { id: 'def2', url: defaultFrame2, name: 'chanes', isDefault: true },
             { id: 'def3', url: defaultFrame3, name: '2026EduBuffet', isDefault: true }
         ];

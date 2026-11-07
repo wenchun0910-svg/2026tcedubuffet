@@ -502,11 +502,17 @@
         // ==========================================
         // 初始化 Firebase
         // ==========================================
-        let firebaseConfig = { apiKey: "dummy", projectId: "dummy", appId: "dummy" };
-        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-            try { firebaseConfig = JSON.parse(__firebase_config); } catch(e){}
-        }
-        appId = typeof __app_id !== 'undefined' ? __app_id : 'default-photo-booth';
+         const firebaseConfig = {
+  apiKey: "AIzaSyC4xX1pgQECCv_0BPJ7c3evNJHDLPvZkmE",
+  authDomain: "photobooth-92401.firebaseapp.com",
+  projectId: "photobooth-92401",
+  storageBucket: "photobooth-92401.firebasestorage.app",
+  messagingSenderId: "948611804541",
+  appId: "1:948611804541:web:7503665164cc4ac6907014"
+};
+        // 給您的拍貼機取一個專屬的 ID
+        appId = 'my-custom-photo-booth';
+
 
         try {
             const app = initializeApp(firebaseConfig);
@@ -517,7 +523,7 @@
         }
 
         // ⭐ 請填入您用來處理 Google Drive 照片上傳/刪除的 GAS 網址
-        const GOOGLE_SCRIPT_URL = "請填入您的_Google_Apps_Script_網址";
+       "https://script.google.com/macros/s/AKfycbxp0gkhMx2F_YeFzPG14d5HjZOT9gHnYhYZMNarRxXll1KraGFGwiGMVfAjx3bxngzn/exec";
 
         // ==========================================
         // 預設邊框

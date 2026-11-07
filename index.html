@@ -19,7 +19,6 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-image 0.3s ease; }
         
-        /* 設定首選為芫荽體，若無則自動降級使用激似的 Klee One */
         .font-cute { 
             font-family: 'Iansui', 'Iansui-Regular', 'Klee One', cursive; 
             letter-spacing: 1px;
@@ -52,7 +51,7 @@
                 if (innerLoader) innerLoader.classList.add('hidden');
                 console.warn("連線逾時，強制啟動模式");
             }
-        }, 5000);
+        }, 6000);
     </script>
 </head>
 <body class="min-h-screen text-gray-800 flex flex-col overflow-x-hidden bg-[#f8f9fa] relative z-0">
@@ -122,7 +121,7 @@
     <!-- 全局載入畫面 -->
     <div id="global-loading" class="flex-1 flex flex-col items-center justify-center absolute inset-0 z-50 bg-white/80 backdrop-blur-sm">
         <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4 animate-bounce bg-white flex items-center justify-center">
-            <img src="tc.png" alt="Loading Logo" class="dynamic-site-logo w-full h-full object-contain p-2">
+            <img src="Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png" alt="Loading Logo" class="dynamic-site-logo w-full h-full object-contain p-2">
         </div>
         <p class="font-cute text-gray-800 font-bold tracking-widest text-lg md:text-xl">系統啟動中...</p>
     </div>
@@ -131,7 +130,7 @@
     <div id="view-booth" class="flex-1 flex flex-col items-center justify-center p-2 sm:p-4 relative hidden w-full overflow-y-auto no-scrollbar">
         <div class="flex items-center justify-center mb-2 md:mb-4 bg-white/70 px-6 py-2 rounded-full backdrop-blur-sm shadow-sm">
             <div class="w-10 h-10 md:w-14 md:h-14 mr-3 rounded-full overflow-hidden border-2 border-white shadow-sm bg-white flex items-center justify-center shrink-0">
-                <img src="tc.png" alt="Logo" class="dynamic-site-logo w-full h-full object-contain p-1">
+                <img src="Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png" alt="Logo" class="dynamic-site-logo w-full h-full object-contain p-1">
             </div>
             <h1 class="dynamic-site-title font-cute text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 tracking-wider">智能拍貼機</h1>
         </div>
@@ -147,7 +146,7 @@
                 
                 <div id="loading-state" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-80 text-white z-30">
                     <i class="fa-solid fa-spinner fa-spin text-4xl mb-3"></i>
-                    <p id="loading-text" class="text-sm">正在初始化相機與 AI...</p>
+                    <p id="loading-text" class="text-sm mt-2 text-center px-4">正在啟動相機與 AI...<br><span class="text-xs text-gray-300">(舊手機可能需要較長時間，請稍候)</span></p>
                 </div>
 
                 <div id="gesture-hint" class="absolute top-4 left-0 right-0 text-center z-20 pointer-events-none hidden">
@@ -161,6 +160,7 @@
         <!-- 控制按鈕 -->
         <div class="mt-4 md:mt-6 flex flex-col items-center z-10 w-full max-w-[95vw] sm:max-w-[500px] md:max-w-[60vh] lg:max-w-[70vh] xl:max-w-[75vh] shrink-0 mb-4 bg-white/70 p-4 rounded-3xl backdrop-blur-md shadow-sm border border-white">
             
+            <!-- 拍攝模式切換 -->
             <div class="flex gap-3 justify-center w-full px-2 mb-4">
                 <button id="btn-mode-1" class="flex-1 py-2 rounded-full text-sm font-bold transition shadow-md bg-pink-500 text-white border-2 border-pink-500">
                     <i class="fa-solid fa-camera mr-1"></i> 拍 1 張
@@ -198,7 +198,7 @@
         <div class="glass-panel bg-white/90 p-6 md:p-10 lg:p-12 rounded-3xl shadow-2xl max-w-2xl lg:max-w-4xl xl:max-w-5xl w-full flex flex-col md:flex-row gap-8 items-center border border-white">
             <div class="w-full md:w-1/2 flex flex-col items-center relative">
                 <img id="result-image" class="w-full aspect-square object-cover rounded-2xl shadow-md border-4 border-white" src="" alt="拍攝結果">
-                <!-- ⭐ 加入手機版長按儲存提示 -->
+                <!-- 手機版長按儲存提示 -->
                 <p class="md:hidden text-pink-500 font-bold mt-4 animate-pulse bg-pink-50 px-4 py-2 rounded-full shadow-sm border border-pink-100">
                     <i class="fa-solid fa-hand-pointer mr-1"></i> 手機版請直接「長按圖片」即可儲存
                 </p>
@@ -238,7 +238,7 @@
             <div id="shared-loading" class="text-gray-500"><i class="fa-solid fa-spinner fa-spin text-3xl"></i></div>
             
             <img id="shared-image" class="w-full aspect-square object-cover rounded-2xl shadow-md border-4 border-gray-100 hidden" src="" alt="Shared Photo">
-            <!-- ⭐ 加入手機版長按儲存提示 -->
+            <!-- 手機版長按儲存提示 -->
             <p id="shared-mobile-hint" class="hidden md:hidden text-pink-500 font-bold mt-1 mb-2 animate-pulse bg-pink-50 px-4 py-2 rounded-full border border-pink-100">
                 <i class="fa-solid fa-hand-pointer mr-1"></i> 手機版請直接「長按圖片」即可儲存
             </p>
@@ -293,11 +293,11 @@
             <form id="form-login" class="flex flex-col gap-4">
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1">帳號</label>
-                    <input type="text" id="login-username" placeholder="" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
+                    <input type="text" id="login-username" placeholder="預設: admin" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1">密碼</label>
-                    <input type="password" id="login-password" placeholder="" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
+                    <input type="password" id="login-password" placeholder="預設: admin123" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
                 </div>
                 <button type="submit" id="btn-submit-login" class="w-full bg-gray-800 text-white py-3 rounded-xl font-bold hover:bg-gray-900 transition mt-2 shadow-md">
                     安全登入
@@ -312,9 +312,7 @@
         <!-- 頂部導航 -->
         <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10 border-b border-gray-200">
             <h1 class="font-cute text-xl md:text-2xl font-black text-gray-800 flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full overflow-hidden border border-gray-200 shadow-sm bg-white flex items-center justify-center shrink-0">
-                    <img src="Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png" alt="Logo" class="dynamic-site-logo w-full h-full object-contain p-0.5">
-                </div>
+                <i class="fa-solid fa-gear text-gray-400 text-xl"></i>
                 <span class="dynamic-site-title text-pink-600">智能拍貼機</span> <span class="text-lg">後台</span>
             </h1>
             <div class="flex gap-4 items-center">
@@ -337,35 +335,27 @@
                             <button id="btn-batch-delete" class="text-sm bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg font-bold transition hidden border border-red-200"><i class="fa-solid fa-trash mr-1"></i>刪除 (<span id="batch-delete-count">0</span>)</button>
                         </div>
                     </div>
+                    <!-- 照片列表 -->
                     <div id="admin-photos-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 content-start p-1 mb-2 w-full h-auto">
                         <div class="col-span-full text-center text-gray-400 py-10"><i class="fa-solid fa-spinner fa-spin"></i> 載入中...</div>
                     </div>
+                    <!-- 分頁按鈕容器 -->
                     <div id="admin-photos-pagination" class="mt-2 border-t border-gray-50 pt-2"></div>
                 </div>
 
                 <!-- 右側選單區 -->
                 <div class="flex flex-col gap-6 h-fit">
                     
-                    <!-- 外觀設定區 (所有登入者可見) -->
-                    <div id="section-site-settings" class="bg-white rounded-3xl shadow-sm p-6 border border-gray-100 flex flex-col h-fit">
+                    <!-- 外觀設定區 (僅管理員可見) -->
+                    <div id="section-site-settings" class="bg-white rounded-3xl shadow-sm p-6 border border-gray-100 flex flex-col h-fit hidden">
                         <h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-3"><i class="fa-solid fa-palette text-pink-500 mr-2"></i>外觀設定</h2>
-                        
-                        <div class="flex flex-col gap-2 mb-3">
+                        <div class="flex flex-col gap-2">
                             <label class="text-sm font-bold text-gray-600">網站標題</label>
-                            <input type="text" id="admin-input-title" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 font-bold" placeholder="輸入自訂標題">
+                            <div class="flex gap-2">
+                                <input type="text" id="admin-input-title" class="flex-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 font-bold" placeholder="輸入自訂標題">
+                                <button id="btn-save-title" class="bg-gray-800 text-white px-4 py-2 rounded-xl font-bold hover:bg-gray-900 transition shadow-sm whitespace-nowrap">儲存</button>
+                            </div>
                         </div>
-                        
-                        <div class="flex flex-col gap-2 mb-3">
-                            <label class="text-sm font-bold text-gray-600">Logo 圖片網址</label>
-                            <input type="text" id="admin-input-logo" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 text-sm" placeholder="輸入 Logo 網址 (留空使用預設)">
-                        </div>
-
-                        <div class="flex flex-col gap-2 mb-4">
-                            <label class="text-sm font-bold text-gray-600">自訂背景網址</label>
-                            <input type="text" id="admin-input-bg" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 text-sm" placeholder="輸入背景圖網址 (留空使用動物背景)">
-                        </div>
-                        
-                        <button id="btn-save-config" class="w-full bg-gray-800 text-white px-4 py-2.5 rounded-xl font-bold hover:bg-gray-900 transition shadow-sm">儲存外觀設定</button>
                     </div>
 
                     <!-- 邊框管理區 -->
@@ -392,7 +382,7 @@
                         <h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-3"><i class="fa-solid fa-users-gear text-pink-500 mr-2"></i>帳號設定</h2>
                         <div class="flex flex-col gap-3">
                             <button id="btn-open-password-modal" class="w-full flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 py-3 rounded-xl text-sm font-bold transition">
-                                <i class="fa-solid fa-key text-gray-400"></i> 修改我的密碼
+                                <i class="fa-solid fa-key text-gray-400"></i> 修改密碼
                             </button>
                             <button id="btn-open-collab-modal" class="w-full flex items-center justify-center gap-2 bg-pink-50 hover:bg-pink-100 border border-pink-100 text-pink-600 py-3 rounded-xl text-sm font-bold transition hidden">
                                 <i class="fa-solid fa-user-plus"></i> 新增協作者
@@ -415,11 +405,11 @@
         </div>
     </div>
 
-    <!-- 修改密碼視窗 -->
+    <!-- 修改密碼與協作者視窗 -->
     <div id="modal-change-password" class="fixed inset-0 bg-gray-900/60 z-50 flex items-center justify-center hidden backdrop-blur-sm p-4 transition-opacity">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm shadow-2xl relative border border-gray-100">
             <button id="btn-close-password-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="text-2xl font-black text-gray-800 mb-6 flex items-center"><i class="fa-solid fa-key text-pink-500 mr-2"></i>修改我的密碼</h2>
+            <h2 class="text-2xl font-black text-gray-800 mb-6 flex items-center"><i class="fa-solid fa-key text-pink-500 mr-2"></i>修改密碼</h2>
             <form id="form-change-password" class="flex flex-col gap-4">
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1">新密碼</label>
@@ -431,7 +421,6 @@
         </div>
     </div>
 
-    <!-- 新增協作者視窗 (加入備註欄位) -->
     <div id="modal-add-collaborator" class="fixed inset-0 bg-gray-900/60 z-50 flex items-center justify-center hidden backdrop-blur-sm p-4 transition-opacity">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm shadow-2xl relative border border-gray-100">
             <button id="btn-close-collab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
@@ -481,8 +470,11 @@
 
         const video = document.getElementById('webcam');
         const canvas = document.getElementById('output_canvas');
-        const ctx = canvas.getContext('2d', { willReadFrequently: true });
-        const CANVAS_SIZE = 800; 
+        // ⭐ 移除 willReadFrequently 避免舊版 iOS 渲染引擎當機
+        const ctx = canvas.getContext('2d'); 
+        
+        // ⭐ 降低畫布解析度，減少舊手機記憶體負載與新版 iOS 上傳超時問題
+        const CANVAS_SIZE = 600; 
         canvas.width = CANVAS_SIZE;
         canvas.height = CANVAS_SIZE;
 
@@ -503,23 +495,18 @@
         // 動態外觀設定預設值
         let currentConfig = {
             siteTitle: "智能拍貼機",
-            logoUrl: "tc.png",
+            logoUrl: "Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png",
             bgUrl: ""
         };
 
         // ==========================================
         // 初始化 Firebase
         // ==========================================
-       const firebaseConfig = {
-  apiKey: "AIzaSyC4xX1pgQECCv_0BPJ7c3evNJHDLPvZkmE",
-  authDomain: "photobooth-92401.firebaseapp.com",
-  projectId: "photobooth-92401",
-  storageBucket: "photobooth-92401.firebasestorage.app",
-  messagingSenderId: "948611804541",
-  appId: "1:948611804541:web:7503665164cc4ac6907014"
-};
-        // 給您的拍貼機取一個專屬的 ID
-        appId = 'my-custom-photo-booth';
+        let firebaseConfig = { apiKey: "dummy", projectId: "dummy", appId: "dummy" };
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+            try { firebaseConfig = JSON.parse(__firebase_config); } catch(e){}
+        }
+        appId = typeof __app_id !== 'undefined' ? __app_id : 'default-photo-booth';
 
         try {
             const app = initializeApp(firebaseConfig);
@@ -530,44 +517,60 @@
         }
 
         // ⭐ 請填入您用來處理 Google Drive 照片上傳/刪除的 GAS 網址
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxp0gkhMx2F_YeFzPG14d5HjZOT9gHnYhYZMNarRxXll1KraGFGwiGMVfAjx3bxngzn/exec";
+        const GOOGLE_SCRIPT_URL = "請填入您的_Google_Apps_Script_網址";
 
         // ==========================================
         // 預設邊框
         // ==========================================
         const btoaUTF8 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
-        const defaultFrame1 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/2026tc11078.png";
-      const defaultFrame2 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/2026tc11072.png";
-        const defaultFrame3 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/2026tc11073.png";
-
+        const defaultFrame1 = `data:image/svg+xml;base64,` + btoaUTF8(`
+            <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="760" height="760" fill="none" stroke="#ffffff" stroke-width="30" rx="15" />
+                <path d="M0,0 L150,0 L0,150 Z" fill="#ff69b4" opacity="0.8"/>
+                <path d="M800,0 L650,0 L800,150 Z" fill="#ffb6c1" opacity="0.8"/>
+                <path d="M0,800 L150,800 L0,650 Z" fill="#ffb6c1" opacity="0.8"/>
+                <path d="M800,800 L650,800 L800,650 Z" fill="#ff69b4" opacity="0.8"/>
+                <text x="400" y="750" font-family="sans-serif" font-size="40" fill="white" text-anchor="middle" font-weight="900" letter-spacing="5" style="text-shadow: 2px 2px 0px #ff69b4;">LOVE MOMENT</text>
+            </svg>
+        `);
+        const defaultFrame2 = `data:image/svg+xml;base64,` + btoaUTF8(`
+            <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="800" height="800" fill="none" stroke="#222" stroke-width="40" />
+                <rect x="30" y="30" width="740" height="740" fill="none" stroke="white" stroke-width="5" stroke-dasharray="20,10" />
+                <text x="400" y="760" font-family="monospace" font-size="30" fill="white" text-anchor="middle" font-weight="bold" background="black">/// FILM STRIP ///</text>
+            </svg>
+        `);
+        const defaultFrame3 = "https://raw.githubusercontent.com/您的帳號/專案名稱/main/可愛海兔去背版.png";
 
         const DEFAULT_FRAMES = [
-            { id: 'def1', url: defaultFrame1, name: '2026EDU-BUFFET-1', isDefault: true },
-            { id: 'def2', url: defaultFrame2, name: '2026EDU-BUFFET-2', isDefault: true },
-            { id: 'def3', url: defaultFrame3, name: '2026EDU-BUFFET-3', isDefault: true }
-   
+            { id: 'def1', url: defaultFrame1, name: 'Love Moment', isDefault: true },
+            { id: 'def2', url: defaultFrame2, name: 'Film Strip', isDefault: true },
+            { id: 'def3', url: defaultFrame3, name: '可愛海兔', isDefault: true }
         ];
 
         // ==========================================
-        // 下載與分享輔助函式
+        // 下載與分享輔助函式 (修正手機版無反應問題)
         // ==========================================
-        async function handleImageDownload(imgUrl, defaultFilename) {
-            // 一般下載機制
+        function handleImageDownload(imgUrl, defaultFilename) {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                alert("【手機版貼心提醒】\n系統受限於 APP (如 LINE、FB) 安全機制，若沒有自動下載，請直接「長按螢幕上的照片」，選擇「儲存圖片」即可！");
+            }
             const a = document.createElement('a');
             a.href = imgUrl;
             a.download = defaultFilename;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-
-            // 針對手機設備彈出溫馨提示 (避免 In-App Browser 擋下載)
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                alert("【貼心提醒】\n如果照片沒有自動下載，請直接「長按螢幕上的照片」，選擇「儲存圖片」即可！");
-            }
         }
 
         async function downloadAsPDF(imgSource) {
             try {
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (isMobile) {
+                    alert("⏳ PDF 處理中...\n\n【貼心提醒】稍後系統將為您直接開啟 PDF，請使用手機瀏覽器的「分享 / 匯出」功能來儲存檔案。");
+                }
+
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
                 
@@ -590,7 +593,25 @@
                 const y = (pdfHeight - maxImgWidth) / 2;
                 
                 pdf.addImage(base64Data, 'JPEG', x, y, maxImgWidth, maxImgWidth);
-                pdf.save(`photobooth_${Date.now()}.pdf`);
+                
+                if (isMobile) {
+                    // 手機版：轉為 Blob URL 直接開啟，避開下載封鎖
+                    const blob = pdf.output('blob');
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `photobooth_${Date.now()}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    // 若一般點擊被擋，半秒後嘗試直接在當前畫面開啟該 PDF 供使用者分享
+                    setTimeout(() => {
+                        window.location.href = url;
+                    }, 500);
+                } else {
+                    pdf.save(`photobooth_${Date.now()}.pdf`);
+                }
             } catch (err) {
                 console.error("PDF 產生失敗:", err);
                 alert("無法產生 PDF，可能是圖片跨域權限受限。");
@@ -687,7 +708,7 @@
             try {
                 await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config'), {
                     siteTitle: newTitle || "智能拍貼機",
-                    logoUrl: newLogo || "tc.png",
+                    logoUrl: newLogo || "Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png",
                     bgUrl: newBg || ""
                 }, { merge: true });
                 btn.innerText = "✅ 已儲存";
@@ -813,13 +834,16 @@
         async function startWebcam() {
             if (isWebcamRunning) return;
             try {
-                const constraints = { video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } };
+                // ⭐ 降低理想解析度，避免舊版 iOS 記憶體不足定格
+                const constraints = { video: { facingMode: "user", width: { ideal: 720 }, height: { ideal: 720 } } };
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = stream;
                 
-                video.addEventListener('loadeddata', () => {
+                video.addEventListener('loadeddata', async () => {
                     document.getElementById('loading-state').classList.add('hidden');
                     isWebcamRunning = true;
+                    // ⭐ 確保 iOS 舊版 Safari 觸發播放
+                    try { await video.play(); } catch(e) {} 
                     requestAnimationFrame(renderLoop);
                 });
             } catch (err) {
@@ -898,7 +922,8 @@
             flash.style.opacity = '1';
             setTimeout(() => flash.style.opacity = '0', 150);
 
-            const imageData = canvas.toDataURL('image/jpeg', 0.8);
+            // ⭐ 壓縮 JPEG 品質為 0.7，減少新版 iOS 上傳超時問題
+            const imageData = canvas.toDataURL('image/jpeg', 0.7);
             capturedShots.push(imageData);
             isCountingDown = false; 
             
@@ -938,7 +963,8 @@
                     compCtx.lineWidth = 10;
                     compCtx.strokeRect(x, y, CANVAS_SIZE, CANVAS_SIZE);
                 }
-                finalImageData = compCanvas.toDataURL('image/jpeg', 0.8);
+                // ⭐ 壓縮 JPEG 品質為 0.7
+                finalImageData = compCanvas.toDataURL('image/jpeg', 0.7);
                 
                 document.getElementById('loading-state').classList.add('hidden');
                 document.getElementById('loading-text').innerText = "正在初始化相機與 AI...";
@@ -961,9 +987,14 @@
                     let driveFileId = "";
 
                     if (typeof GOOGLE_SCRIPT_URL !== 'undefined' && GOOGLE_SCRIPT_URL.startsWith("https://script.google.com/")) {
+                        // ⭐ 加入 redirect: 'follow' 確保新版 iOS Safari 正確跟隨轉址
                         const res = await fetch(GOOGLE_SCRIPT_URL, {
                             method: 'POST',
-                            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
+                            redirect: 'follow', 
+                            headers: { 
+                                'Content-Type': 'text/plain;charset=utf-8',
+                                'Accept': 'application/json' 
+                            }, 
                             body: JSON.stringify({
                                 action: 'upload',
                                 filename: `photobooth_${Date.now()}.jpg`,
@@ -985,6 +1016,7 @@
                         userId: currentUserId
                     });
                     
+                    // 記錄上傳的 ID 以供即時刪除
                     lastUploadedPhotoId = docRef.id;
                     lastUploadedDriveId = driveFileId;
                     document.getElementById('btn-delete-result').classList.remove('hidden');
@@ -1399,11 +1431,13 @@
             document.getElementById('modal-photo-preview').classList.add('hidden');
         });
 
+        // ⭐ 後台單張照片下載 (加入手機版長按提示)
         document.getElementById('btn-preview-download-img')?.addEventListener('click', () => {
             const src = document.getElementById('preview-modal-img').src;
             handleImageDownload(src, `photo-${Date.now()}.jpg`);
         });
 
+        // ⭐ 後台單張照片列印 (加強手機版觸發)
         document.getElementById('btn-preview-download-pdf')?.addEventListener('click', () => {
             const src = document.getElementById('preview-modal-img').src;
             downloadAsPDF(src);

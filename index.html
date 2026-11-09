@@ -19,6 +19,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-image 0.3s ease; }
         
+        /* 設定首選為芫荽體，若無則自動降級使用激似的 Klee One */
         .font-cute { 
             font-family: 'Iansui', 'Iansui-Regular', 'Klee One', cursive; 
             letter-spacing: 1px;
@@ -51,7 +52,7 @@
                 if (innerLoader) innerLoader.classList.add('hidden');
                 console.warn("連線逾時，強制啟動模式");
             }
-        }, 6000);
+        }, 5000);
     </script>
 </head>
 <body class="min-h-screen text-gray-800 flex flex-col overflow-x-hidden bg-[#f8f9fa] relative z-0">
@@ -297,7 +298,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-1">密碼</label>
-                    <input type="password" id="login-password" placeholder="" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
+                    <input type="password" id="login-password" placeholder="預設: admin123" required class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none bg-gray-50">
                 </div>
                 <button type="submit" id="btn-submit-login" class="w-full bg-gray-800 text-white py-3 rounded-xl font-bold hover:bg-gray-900 transition mt-2 shadow-md">
                     安全登入
@@ -312,7 +313,9 @@
         <!-- 頂部導航 -->
         <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10 border-b border-gray-200">
             <h1 class="font-cute text-xl md:text-2xl font-black text-gray-800 flex items-center gap-2">
-                <i class="fa-solid fa-gear text-gray-400 text-xl"></i>
+                <div class="w-8 h-8 rounded-full overflow-hidden border border-gray-200 shadow-sm bg-white flex items-center justify-center shrink-0">
+                    <img src="Gemini_Generated_Image_kpq5mkpq5mkpq5mk.png" alt="Logo" class="dynamic-site-logo w-full h-full object-contain p-0.5">
+                </div>
                 <span class="dynamic-site-title text-pink-600">智能拍貼機</span> <span class="text-lg">後台</span>
             </h1>
             <div class="flex gap-4 items-center">
@@ -346,16 +349,26 @@
                 <!-- 右側選單區 -->
                 <div class="flex flex-col gap-6 h-fit">
                     
-                    <!-- 外觀設定區 (僅管理員可見) -->
-                    <div id="section-site-settings" class="bg-white rounded-3xl shadow-sm p-6 border border-gray-100 flex flex-col h-fit hidden">
+                    <!-- 外觀設定區 (所有登入者可見) -->
+                    <div id="section-site-settings" class="bg-white rounded-3xl shadow-sm p-6 border border-gray-100 flex flex-col h-fit">
                         <h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-3"><i class="fa-solid fa-palette text-pink-500 mr-2"></i>外觀設定</h2>
-                        <div class="flex flex-col gap-2">
+                        
+                        <div class="flex flex-col gap-2 mb-3">
                             <label class="text-sm font-bold text-gray-600">網站標題</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="admin-input-title" class="flex-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 font-bold" placeholder="輸入自訂標題">
-                                <button id="btn-save-title" class="bg-gray-800 text-white px-4 py-2 rounded-xl font-bold hover:bg-gray-900 transition shadow-sm whitespace-nowrap">儲存</button>
-                            </div>
+                            <input type="text" id="admin-input-title" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 font-bold" placeholder="輸入自訂標題">
                         </div>
+                        
+                        <div class="flex flex-col gap-2 mb-3">
+                            <label class="text-sm font-bold text-gray-600">Logo 圖片網址</label>
+                            <input type="text" id="admin-input-logo" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 text-sm" placeholder="輸入 Logo 網址 (留空使用預設)">
+                        </div>
+
+                        <div class="flex flex-col gap-2 mb-4">
+                            <label class="text-sm font-bold text-gray-600">自訂背景網址</label>
+                            <input type="text" id="admin-input-bg" class="px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 bg-gray-50 text-sm" placeholder="輸入背景圖網址 (留空使用動物背景)">
+                        </div>
+                        
+                        <button id="btn-save-config" class="w-full bg-gray-800 text-white px-4 py-2.5 rounded-xl font-bold hover:bg-gray-900 transition shadow-sm">儲存外觀設定</button>
                     </div>
 
                     <!-- 邊框管理區 -->
@@ -377,7 +390,7 @@
                         </div>
                     </div>
 
-                    <!-- 系統帳號設定區 (加入協作者名單) -->
+                    <!-- 系統帳號設定區 -->
                     <div class="bg-white rounded-3xl shadow-sm p-6 border border-gray-100 flex flex-col h-fit">
                         <h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-3"><i class="fa-solid fa-users-gear text-pink-500 mr-2"></i>帳號設定</h2>
                         <div class="flex flex-col gap-3">
@@ -421,6 +434,7 @@
         </div>
     </div>
 
+    <!-- 新增協作者視窗 -->
     <div id="modal-add-collaborator" class="fixed inset-0 bg-gray-900/60 z-50 flex items-center justify-center hidden backdrop-blur-sm p-4 transition-opacity">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm shadow-2xl relative border border-gray-100">
             <button id="btn-close-collab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
@@ -492,7 +506,7 @@
         let capturedShots = []; 
         let isShootingSequence = false; 
 
-        // 動態外觀設定預設值
+        // ⭐ 修改：將系統核心的預設活動名稱改為您的活動
         let currentConfig = {
             siteTitle: "長安二十 夢想奔馳",
             logoUrl: "logo.png",
@@ -502,7 +516,7 @@
         // ==========================================
         // 初始化 Firebase
         // ==========================================
-         const firebaseConfig = {
+               const firebaseConfig = {
   apiKey: "AIzaSyC4xX1pgQECCv_0BPJ7c3evNJHDLPvZkmE",
   authDomain: "photobooth-92401.firebaseapp.com",
   projectId: "photobooth-92401",
@@ -523,13 +537,30 @@
         }
 
         // ⭐ 請填入您用來處理 Google Drive 照片上傳/刪除的 GAS 網址
-       "https://script.google.com/macros/s/AKfycbxp0gkhMx2F_YeFzPG14d5HjZOT9gHnYhYZMNarRxXll1KraGFGwiGMVfAjx3bxngzn/exec";
+      "https://script.google.com/macros/s/AKfycbxp0gkhMx2F_YeFzPG14d5HjZOT9gHnYhYZMNarRxXll1KraGFGwiGMVfAjx3bxngzn/exec";
 
         // ==========================================
         // 預設邊框
         // ==========================================
         const btoaUTF8 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
-      const defaultFrame1 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/c01.png";
+        const defaultFrame1 = `data:image/svg+xml;base64,` + btoaUTF8(`
+            <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="760" height="760" fill="none" stroke="#ffffff" stroke-width="30" rx="15" />
+                <path d="M0,0 L150,0 L0,150 Z" fill="#ff69b4" opacity="0.8"/>
+                <path d="M800,0 L650,0 L800,150 Z" fill="#ffb6c1" opacity="0.8"/>
+                <path d="M0,800 L150,800 L0,650 Z" fill="#ffb6c1" opacity="0.8"/>
+                <path d="M800,800 L650,800 L800,650 Z" fill="#ff69b4" opacity="0.8"/>
+                <text x="400" y="750" font-family="sans-serif" font-size="40" fill="white" text-anchor="middle" font-weight="900" letter-spacing="5" style="text-shadow: 2px 2px 0px #ff69b4;">LOVE MOMENT</text>
+            </svg>
+        `);
+        const defaultFrame2 = `data:image/svg+xml;base64,` + btoaUTF8(`
+            <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="800" height="800" fill="none" stroke="#222" stroke-width="40" />
+                <rect x="30" y="30" width="740" height="740" fill="none" stroke="white" stroke-width="5" stroke-dasharray="20,10" />
+                <text x="400" y="760" font-family="monospace" font-size="30" fill="white" text-anchor="middle" font-weight="bold" background="black">/// FILM STRIP ///</text>
+            </svg>
+        `);
+       const defaultFrame1 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/c01.png";
       const defaultFrame2 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/c02.png";
         const defaultFrame3 = "https://raw.githubusercontent.com/wenchun0910-svg/2026tcedubuffet/refs/heads/main/c03.png";
 
@@ -540,7 +571,6 @@
             { id: 'def3', url: defaultFrame3, name: 'chanes20-3', isDefault: true }
    
         ];
-
 
         // ==========================================
         // 下載與分享輔助函式 (修正手機版無反應問題)
@@ -1425,13 +1455,11 @@
             document.getElementById('modal-photo-preview').classList.add('hidden');
         });
 
-        // ⭐ 後台單張照片下載 (加入手機版長按提示)
         document.getElementById('btn-preview-download-img')?.addEventListener('click', () => {
             const src = document.getElementById('preview-modal-img').src;
             handleImageDownload(src, `photo-${Date.now()}.jpg`);
         });
 
-        // ⭐ 後台單張照片列印 (加強手機版觸發)
         document.getElementById('btn-preview-download-pdf')?.addEventListener('click', () => {
             const src = document.getElementById('preview-modal-img').src;
             downloadAsPDF(src);

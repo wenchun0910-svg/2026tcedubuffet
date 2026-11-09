@@ -1,2 +1,2 @@
 # 2026tcedubuffet
-2026臺中EDU-Buffeto智能拍貼機 - Deployed by EZPage
+長安二十 夢想奔馳 - Deployed by EZPage
